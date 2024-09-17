@@ -8,7 +8,8 @@ use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
-    public function render(Request $request) {
+    public function render(Request $request): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
+    {
         $cart = $request->session()->get('cart', []);
 
         $total = array_sum(array_map(function ($product) {
@@ -62,7 +63,5 @@ class CartController extends Controller
         $request->session()->forget('cart');
 
         return redirect()->back()->with('success', 'Заказ успешно создан.');
-
-//        return redirect()->route('orders.render')->with('success', 'Заказ успешно создан.');
     }
 }

@@ -17,7 +17,8 @@ class OrdersController extends Controller
         ]);
     }
 
-    public function delete(OrdersModel $order) {
+    public function delete(OrdersModel $order): \Illuminate\Http\RedirectResponse
+    {
         $order->delete();
 
         return redirect()->route('orders.render')->with('success', 'Заказ успешно удалено.');

@@ -13,7 +13,7 @@
 @endif
 <h1>Авторизация</h1>
 
-<form action="{{route('login')}}" method="POST">
+<form action="{{route('login_form')}}" method="POST">
     @csrf
     <input name="email" type="email">
     <input name="password" type="password">
