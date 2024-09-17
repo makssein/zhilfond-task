@@ -17,7 +17,7 @@ class CartController extends Controller
 
         return view('cart/index', [
             'cart' => $cart,
-            'total_price' => $total
+            'price_total' => $total
         ]);
     }
 
@@ -56,11 +56,13 @@ class CartController extends Controller
         ]);
 
         foreach ($cart as $product) {
-            $order->products()->attach($product->id, ['quantity' => $product['quantity']]);
+            $order->products()->attach($product['id'], ['quantity' => $product['quantity']]);
         }
 
         $request->session()->forget('cart');
 
-        return redirect()->route('orders.index')->with('success', 'Заказ успешно создан.');
+        return redirect()->back()->with('success', 'Заказ успешно создан.');
+
+//        return redirect()->route('orders.render')->with('success', 'Заказ успешно создан.');
     }
 }

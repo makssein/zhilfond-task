@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\OrdersModel;
-use Illuminate\Http\Request;
 
 class OrdersController extends Controller
 {
@@ -16,5 +15,11 @@ class OrdersController extends Controller
             'orders' => $orders,
             'price_total' => $total
         ]);
+    }
+
+    public function delete(OrdersModel $order) {
+        $order->delete();
+
+        return redirect()->route('orders.render')->with('success', 'Заказ успешно удалено.');
     }
 }
